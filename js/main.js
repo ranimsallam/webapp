@@ -81,6 +81,7 @@ function saveLinks() {
 
 	for(var i=0; i<tmp.length; i++){
 		links[i] = tmp[i].children[1].value;
+
 	}
 
 	var i =0;
@@ -167,16 +168,21 @@ function isValid(data){
 
 		if(name!="" && url==""){
 			(tmp[i+1].children[1]).style.border = "ridge 1px #D8000C";
+			if(returnVal)
+				(tmp[i+1].children[1]).focus();
 			returnVal=false;
 		}
 
 		if(name=="" && url!=""){
 			(tmp[i].children[1]).style.border = "ridge 1px #D8000C";
+			if(returnVal)
+				(tmp[i].children[1]).focus();
 			retyrnVal=false;
 		}
 	}
 	return returnVal;
 }
+
 
 $("#reports-form").addEventListener('keyup' , function(e){
 	if(e.keyCode == 27){
@@ -184,6 +190,23 @@ $("#reports-form").addEventListener('keyup' , function(e){
 	}
 });
 
+$("#reports-form").addEventListener('keyup' , function(e){
+	if(e.keyCode == 13){
+		saveLinks();
+	}
+});
+
+$("#folders-form").addEventListener('keyup' , function(e){
+	if(e.keyCode == 27){
+		$("#folders-form").classList.toggle("hidden");
+	}
+});
+
+$("#folders-form").addEventListener('keyup' , function(e){
+	if(e.keyCode == 13){
+		saveLinks();
+	}
+});
 
 function init(){
 
@@ -232,11 +255,13 @@ function init(){
 	document.getElementById("btnSettings-quickreports").addEventListener('click', function(e){
 		$("#btnSettings-quickreports").classList.toggle("active");
 		$("#reports-form").classList.toggle("hidden");
+		$("#reportName1").focus();
 	});
 
 	document.getElementById("team-folder-settings-btn").addEventListener('click', function(e){
 		$("#folders-form").classList.toggle("active");
 		$("#folders-form").classList.toggle("hidden");
+		$("#folderName1").focus();
 	});
 
 	
