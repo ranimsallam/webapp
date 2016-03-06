@@ -16,7 +16,8 @@
             <a href="#"><img id="netcraft-logo" src="img/logo-netcraft.svg" alt="netcraft"></a>
 
             <form class="search-box">
-                <input type="search" name="q" placeholder="search">
+                <label for="search"><span class="hidden">s</span></label>
+                <input type="search" name="q" placeholder="search" id="search">
             </form>
         </div>
     </header>
@@ -91,7 +92,8 @@
 
             <!-- ########################################### Quick REPORTS #################################################################### -->
                 <div class="tab" id="quick-reports">
-                        <div class="reports-options"> 
+                        <div class="reports-options">
+                            <label for="bookmarks-quickreports"><span class="hidden">s</span></label>
                             <select class="bookmarks" name="bookmarks" id="bookmarks-quickreports">
                             </select>
                             
@@ -182,6 +184,7 @@
     <!-- ########################################################## MY TEAM FOLDERS ################################################################### -->
                 <div class="tab hidden" id="my-team-folders">
                     <div class="reports-options " id="my-team-folder-form"> 
+                            <label for="bookmarks-myTeamFolders"><span class="hidden">s</span></label>
                             <select class="bookmarks" name="bookmarks" id="bookmarks-myTeamFolders"  >
                             </select>
                             
@@ -211,33 +214,33 @@
                                         <li>
                                             <label>Folder 01</label>
                                             <div class="teamFolders-data">
-                                                <label for="name1">Name</label>
+                                                <label for="folderName1">Name</label>
                                                 <input class="report-name" type="text" id="folderName1">
                                             </div>
                                             <div class="teamFolders-data">
-                                                <label for="url1">URL</label>
+                                                <label for="folderUrl1">URL</label>
                                                 <input class="report-url" type="url" id="folderUrl1">
                                             </div>
                                         </li>
                                         <li>
                                             <label>Folder 02</label>
                                             <div class="teamFolders-data">
-                                                <label for="name2">Name</label>
+                                                <label for="folderName2">Name</label>
                                                 <input class="report-name" type="text" id="folderName2">
                                             </div>
                                             <div class="teamFolders-data">
-                                                <label for="url2">URL</label>
+                                                <label for="folderUrl2">URL</label>
                                                 <input class="report-url" type="url" id="folderUrl2">
                                             </div>
                                         </li>
                                         <li>
                                             <label>Folder 03</label>
                                             <div class="teamFolders-data">
-                                                <label for="name3">Name</label>
+                                                <label for="folderName3">Name</label>
                                                 <input class="report-name" type="text" id="folderName3">
                                             </div>
                                             <div class="teamFolders-data">
-                                                <label for="url3">URL</label>
+                                                <label for="folderUrl3">URL</label>
                                                 <input class="report-url" type="url" id="folderUrl3">
                                             </div>
                                         </li>
