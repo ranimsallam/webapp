@@ -1,0 +1,275 @@
+<!doctype html>
+<html class="no-js" lang="eng">
+   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>WebApp</title>
+   <!--  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans"/> -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="fonts/style.css">
+</head>
+<body>
+    <header>
+        <div class="layout-wrap">
+            <a href="#"><img id="netcraft-logo" src="img/logo-netcraft.svg" alt="netcraft"></a>
+
+            <form class="search-box">
+                <input type="search" name="q" placeholder="search">
+            </form>
+        </div>
+    </header>
+
+    <section class="page-body layout-wrap">
+        <div class="notifications"> 
+            
+        </div>
+
+        <nav>
+            <div class="nav-section nav-box1">
+                    <p>Select<br>Reporting Platform</p> 
+
+                <div class="menu">
+                    <div class="menu-caption">
+                        <p>Choose QS report</p>
+                    </div>
+
+                    <ul class="action-list">
+                        <li><a href="#">Corporate</a></li>
+                        <li><a href="#">Simple</a></li>
+                        <li><a href="#">Business</a></li>
+                        <!-- <li><a href="#">link</a></li>
+                        <li><a href="#">link</a></li> -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="nav-section nav-box2">
+                    <p>Select <br> Dashboard</p>
+
+                <div class="menu">
+                    <div class="menu-caption">
+                        <p>Choose dashboard</p>
+                    </div>
+
+                    <ul class="action-list">
+                        <li><a href="#">Account Dashboard</a></li>
+                        <li><a href="#">Daily Huddle Dashboard</a></li>
+                        <li><a href="#">Tier 2 Dashboard</a></li>
+                        <li><a href="#">ADM Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="nav-section nav-box3">
+                    <p>Help &amp; <br> Tutorials</p>
+
+                <div class="menu">
+                    <div class="menu-caption">
+                        <p>Choose guide</p>
+                    </div>
+
+                    <ul class="action-list">
+                        <li><a href="#">Real Time</a></li>
+                        <li><a href="#">Past Data</a></li>
+                        <li><a href="#">Corporate Data</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="tabs">
+            <ul class="tabs-list">
+                <li class="active-tab"> <a class="tab-link" href="#quick-reports" rel="quick-reports"><span class="icon-external-link tab-icon"></span>  Quick Reports</a></li>
+                <li>  <a class="tab-link" href="#my-folders" rel="my-folders"> <span class="icon-star-o tab-icon"></span>  My Folders</a></li>
+                <li>  <a class="tab-link" href="#my-team-folders" rel="my-team-folders"><span class="icon-folder-open-o tab-icon"></span>  My Team Folders</a></li>
+                <li>  <a class="tab-link" href="#public-folders" rel="public-folders"><span class="icon-copy tab-icon"></span>  Public Folders</a></li>
+            </ul>
+
+            <div id="tab-content">
+
+            <!-- ########################################### Quick REPORTS #################################################################### -->
+                <div class="tab" id="quick-reports">
+                        <div class="reports-options"> 
+                            <select class="bookmarks" name="bookmarks" id="bookmarks-quickreports">
+                            </select>
+                            
+                            <div class="reports-options-buttons">
+                                
+                                <div class="btn-expand">     
+                                    <a class="btn-expand expand-toleft" target="_blank" href="#" id="expand-quickreports">   <!-- add class = hidden  -->
+                                        <img src="img/icons/expand.png" alt="expand icon">
+                                    </a>
+                                </div>
+
+                                <div class="btn-settings">
+                                    <button class="btn-settings active" id="btnSettings-quickreports">
+                                        <img src="img/icons/settings.png" alt="settings icon">
+                                    </button>   
+                                </div>
+                            </div>
+                           
+                            <!-- <div id="quick-reports-settings-form" class="settings"> -->
+                               <!--  <form class="frmSettings" id="quickreports" runat="server"> -->
+
+                                <div class="settings-reports hidden" id="reports-form" >
+                                <form >     <!-- action="" onsubmit="event.preventDefault()" -->
+                                    <ul>
+                                        <li class="settings-row">
+                                            <label>Report 01</label>
+                                            <div class="reports-data">
+                                                <label for="name1">Name</label>
+                                                <input class="report-name" type="text" id="name1">
+                                            </div>
+                                            <div class="reports-data">
+                                                <label for="url1">URL</label>
+                                                <input class="report-url" type="url" id="url1">
+                                            </div>
+                                        </li>
+                                        <li class="settings-row">
+                                            <label>Report 02</label>
+                                            <div class="reports-data">
+                                                <label for="name2">Name</label>
+                                                <input class="report-name" type="text" id="name2">
+                                            </div>
+                                            <div class="reports-data">
+                                                <label for="url2">URL</label>
+                                                <input class="report-url" type="url" id="url2">
+                                            </div>
+                                        </li>
+                                        <li class="settings-row">
+                                            <label>Report 03</label>
+                                            <div class="reports-data">
+                                                <label for="name3">Name</label>
+                                                <input class="report-name" type="text" id="name3">
+                                            </div>
+                                            <div class="reports-data">
+                                                <label for="url3">URL</label>
+                                                <input class="report-url" type="url" id="url3">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="form-buttons">
+                                        <input type="button" class="cancel-btn" id="reports-cancel-btn" value="Cancel">
+                                        <input type="submit" class="save-btn" id="saveBtn-reports" value="Save">
+                                    </div>
+                                </form>
+                            </div> 
+
+                        <div class="quickReports-frame-wrap folder-content">
+                            <iframe src="" class="quickReports-frame" id="quickReports-frame"></iframe>
+                        </div>
+
+
+                        </div>  
+
+                        
+                       
+
+                    </div>
+
+
+    <!-- ########################################################## MY FOLDERS ################################################################### -->
+                <div class="tab hidden" id="my-folders">
+                    <div>
+                        <a href="http://www.paulirish.com/" class="expand-icon" target="_blank">
+                            <img src="img/icons/expand.png" alt="expand in new window">
+                        </a>
+                    </div>
+                    <iframe src="" class="frame-window"></iframe>
+                </div>
+    <!-- ########################################################## MY TEAM FOLDERS ################################################################### -->
+                <div class="tab hidden" id="my-team-folders">
+                    <div class="reports-options " id="my-team-folder-form"> 
+                            <select class="bookmarks" name="bookmarks" id="bookmarks-myTeamFolders"  >
+                            </select>
+                            
+                            <div class="reports-options-buttons">
+                                
+                                <div class="btn-expand">
+                                    
+                                    <a class="btn-expand expand-toleft" target="_blank" href="#" id="expand-quickreports">   
+                                        <img src="img/icons/expand.png" alt="expand icon">
+                                    </a>
+
+                                </div>
+
+                                <div class="btn-settings">
+                                    <button class="btn-settings active" id="team-folder-settings-btn">
+                                        <img src="img/icons/settings.png" alt="settings icon">
+                                    </button>   
+                                </div>
+                            </div>
+                           
+                            <!-- <div id="quick-reports-settings-form" class="settings"> -->
+                               <!--  <form class="frmSettings" id="quickreports" runat="server"> -->
+
+                                <div class="settings-reports hidden" id="folders-form">
+                                <form >     <!-- action="" onsubmit="event.preventDefault()" -->
+                                    <ul>
+                                        <li>
+                                            <label>Folder 01</label>
+                                            <div class="teamFolders-data">
+                                                <label for="name1">Name</label>
+                                                <input class="report-name" type="text" id="name1">
+                                            </div>
+                                            <div class="teamFolders-data">
+                                                <label for="url1">URL</label>
+                                                <input class="report-url" type="url" id="url1">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label>Folder 02</label>
+                                            <div class="teamFolders-data">
+                                                <label for="name2">Name</label>
+                                                <input class="report-name" type="text" id="name2">
+                                            </div>
+                                            <div class="teamFolders-data">
+                                                <label for="url2">URL</label>
+                                                <input class="report-url" type="url" id="url2">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <label>Folder 03</label>
+                                            <div class="teamFolders-data">
+                                                <label for="name3">Name</label>
+                                                <input class="report-name" type="text" id="name3">
+                                            </div>
+                                            <div class="teamFolders-data">
+                                                <label for="url3">URL</label>
+                                                <input class="report-url" type="url" id="url3">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="form-buttons">
+                                        <input type="button" class="cancel-btn" id="myTeamFolders-cancel-btn" value="Cancel">
+                                        <input type="submit" class="save-btn" id="teamFolders-save-btn" value="Save">
+                                    </div>
+                                </form>
+                            </div>           
+                        </div>
+
+                        <div class="teamFolders-frame-wrap folder-content">
+                            <iframe src="" class="teamFolders-frame" id="teamFolders-frame"></iframe>
+                        </div>
+                </div>
+
+    <!-- ########################################################## PUBLIC FOLDERS ################################################################### -->            
+                <div class="tab hidden" id="public-folders">
+                    <div>
+                        <a href="http://www.paulirish.com/" class="expand-icon" target="_blank">
+                            <img src="img/icons/expand.png" alt="expand in new window">
+                        </a>
+                    </div>
+                    <iframe src="" class="frame-window"></iframe>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <script type="text/javascript" src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    
+</body>
+</html>
