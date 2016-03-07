@@ -310,7 +310,7 @@ function updateNavBoxes(data){
 	
 	if(data != undefined){
 
-		for(var i=0; i<data.length; i++){
+		for(var i=0; i<3; i++){
 			var navId = "navBox"+i;
 			var navBox = $("#navId");
 			var newElement = document.createElement("p");
