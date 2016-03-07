@@ -320,7 +320,7 @@ function updateNavBoxes(data){
 			navBox.insertBefore(newElement , navBox.childNodes[0]);
 
 			var icon = data[i].icon;
-			navBox.style.background = " url(./img/icons/"+ icon +") left 50% top 77px no-repeat black";
+			navBox.style.background = " url(./img/icons/"+ icon +".png) left 50% top 77px no-repeat black";
 
 			var menuCapId = "#menu-caption"+j;
 			var menuCap = $(menuCapId);
