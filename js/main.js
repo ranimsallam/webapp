@@ -336,9 +336,11 @@ function updateActionsList(data){
 			actionList = data[i].actions;
 			var listId = "#actionList"+(i+1);
 			var list = $(listId);
-			for(var j=0; j<actionList.length; j=j+2){
-				list.childNodes.item(j+1).childNodes[0].innerHTML = actionList[i].label;
-				list.childNodes.item(j+1).childNodes[0].href = actionList[i].url;
+			var rows = list.getElementsByTagName("li");
+			for(var j=0; j<actionList.length; j++){
+				rows[j].childNodes[0].innerHTML = actionList[i].label;
+				// list.childNodes.item(j+1).childNodes[0].innerHTML = actionList[i].label;
+				// list.childNodes.item(j+1).childNodes[0].href = actionList[i].url;
 			}
 		}
 	}
