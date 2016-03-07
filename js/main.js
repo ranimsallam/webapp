@@ -296,15 +296,28 @@ $("#folders-form").addEventListener('keyup' , function(e){
 	}
 });
 
-function updatePage(response){
+function updatePageFromeJSON(response){
+	updateNotificationArea(response.notification);
+}
+
+function updateNotificationArea(data){
 	if(response != undefined)
-		$(".notifications").innerHTML = response.notification;
+		$(".notifications").innerHTML = data;
+}
+
+function updateNavBoxes(response){
+	var newElement = document.createElement("p");
+	var arr = [];
+}
+
+function updateQuickActions(){
+
 }
 
 function init(){
 
 
-	UTILS.ajax("data/config.json" , {done: updatePage});
+	UTILS.ajax("data/config.json" , {done: updatePageFromeJSON});
 	//window.location.hash = "#quick-reports";
 
 
@@ -313,10 +326,10 @@ function init(){
 	  	reloadTab(hashTab);
 	 
 
-	updateSelect("#quick-reports");
-	updateSelect("#my-team-folders");
+	//updateSelect("#quick-reports");
+	//updateSelect("#my-team-folders");
 
-	//localStorage.clear();
+	localStorage.clear();
 
 	document.getElementById("saveBtn-reports").addEventListener('click', function(e){
 		if( isInputsNull("#quick-reports") ){
