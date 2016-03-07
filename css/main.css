@@ -399,7 +399,7 @@ nav {
 }
 
 .nav-box2{
-     background: url("../img/icons/action-report-top.png") left 50% top 77px no-repeat black;
+     /*background: url("../img/icons/action-report-top.png") left 50% top 77px no-repeat black;*/
 }
 
 .nav-box2:hover {
@@ -407,7 +407,7 @@ nav {
 }
 
 .nav-box3{
-     background: url("../img/icons/actions-help.png") left 50% top 77px no-repeat black;
+     /*background: url("../img/icons/actions-help.png") left 50% top 77px no-repeat black;*/
 }
 
 .nav-box3:hover {
