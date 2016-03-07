@@ -391,7 +391,7 @@ nav {
 }
 
 .nav-box1{
-    background: url("../img/icons/action-report-new.png") left 50% top 77px no-repeat black;
+   /* background: url("../img/icons/action-report-new.png") left 50% top 77px no-repeat black;*/
 }
 
 .nav-box1:hover {

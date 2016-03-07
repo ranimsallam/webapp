@@ -319,6 +319,9 @@ function updateNavBoxes(data){
 			newElement.innerHTML = data[i].label;
 			navBox.insertBefore(newElement , navBox.childNodes[0]);
 
+			var icon = data[i].icon;
+			$(".nav-box"+i).style.background = " background: url(../img/icons/"+ icon +" ) left 50% top 77px no-repeat black;"
+
 			var menuCapId = "#menu-caption"+j;
 			var menuCap = $(menuCapId);
 			newElement = document.createElement("p");
@@ -336,12 +339,10 @@ function updateActionsList(data){
 			actionList = data[i].actions;
 			var listId = "#actionList"+(i+1);
 			var list = $(listId);
-			var rows = list.getElementsByTagName("li");
+			var actionOptions = list.getElementsByTagName("li");
 			for(var j=0; j<actionList.length; j++){
-				rows[j].childNodes[0].innerHTML = actionList[j].label;
-				rows[j].childNodes[0].href = actionList[j].url;
-				// list.childNodes.item(j+1).childNodes[0].innerHTML = actionList[i].label;
-				// list.childNodes.item(j+1).childNodes[0].href = actionList[i].url;
+				actionOptions[j].childNodes[0].innerHTML = actionList[j].label;
+				actionOptions[j].childNodes[0].href = actionList[j].url;
 			}
 		}
 	}
