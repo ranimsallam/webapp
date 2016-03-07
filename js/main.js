@@ -338,7 +338,8 @@ function updateActionsList(data){
 			var list = $(listId);
 			var rows = list.getElementsByTagName("li");
 			for(var j=0; j<actionList.length; j++){
-				rows[j].childNodes[0].innerHTML = actionList[i].label;
+				rows[j].childNodes[0].innerHTML = actionList[j].label;
+				rows[j].childNodes[0].href = actionList[j].url;
 				// list.childNodes.item(j+1).childNodes[0].innerHTML = actionList[i].label;
 				// list.childNodes.item(j+1).childNodes[0].href = actionList[i].url;
 			}
