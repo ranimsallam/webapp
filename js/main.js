@@ -312,8 +312,8 @@ function updateNavBoxes(data){
 
 		for(var i=0; i<3; i++){
 			var j=i+1;
-			var navId = "navBox"+j;
-			var navBox = $("#navId");
+			var navId = "#navBox"+j;
+			var navBox = $(navId);
 			var newElement = document.createElement("p");
 			newElement.innerHTML = data[i].label;
 			navBox.insertBefore(newElement , navBox.childNodes[0]);
