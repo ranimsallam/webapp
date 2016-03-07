@@ -298,6 +298,7 @@ $("#folders-form").addEventListener('keyup' , function(e){
 
 function updatePageFromeJSON(response){
 	updateNotificationArea(response.notification);
+	updateNavBoxes(response.quickActions);
 }
 
 function updateNotificationArea(data){
@@ -305,9 +306,19 @@ function updateNotificationArea(data){
 		$(".notifications").innerHTML = data;
 }
 
-function updateNavBoxes(response){
-	var newElement = document.createElement("p");
-	var arr = [];
+function updateNavBoxes(data){
+	
+	if(data != undefined){
+
+		for(var i=0; i<data.length; i++){
+			var navId = "navBox"+i;
+			var navBox = $("#navId");
+			var newElement = document.createElement("p");
+			newElement.innerHTML = data[i].label;
+			navBox.insertBefore(newElement , navBox.childNodes[0]);
+		}
+	}
+	
 }
 
 function updateQuickActions(){
