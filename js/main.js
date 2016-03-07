@@ -334,7 +334,7 @@ function updateActionsList(data){
 	var actionList = [];
 		for(var i=0; i<3; i++){
 			actionList = data[i].actions;
-			var listId = "actionList"+(i+1);
+			var listId = "#actionList"+(i+1);
 			var list = $(listId);
 			for(var j=0; j<actionList.length; j++){
 				list.childNodes[j].childNodes[0].innerHTML = actionList[i].label;
