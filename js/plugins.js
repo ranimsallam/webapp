@@ -195,7 +195,7 @@ var UTILS = (function () {
             };
 
             // Fire the request
-            // xhr.send(null);
+            xhr.send(null);
         },
 
         // make ajax GET request and read json file for notifications
