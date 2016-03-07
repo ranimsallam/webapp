@@ -34,12 +34,13 @@ var set_tab = function(){
         var tabsList = document.getElementsByClassName("tab-link");
         // current tab hash
         var active=this.hash;
+        
 
     for (var i = 0; i < tabsList.length; i++) {
         if (tabsList[i].hash == active) {
           parent=tabsList[i].parentNode;
           // set the tab toggle class to be active-tab
-          parent.className+='active-tab';
+          parent.className+=' active-tab';
         } 
         else {
           // remove the tab-active class from the other tabs
@@ -54,6 +55,29 @@ var set_tab = function(){
 
 };
 
+var reloadTab = function(data){
+        var tabsList = document.getElementsByClassName("tab-link");
+        // current tab hash
+        //var active=this.hash;
+
+    for (var i = 0; i < tabsList.length; i++) {
+        if (tabsList[i].hash == data) {
+          parent=tabsList[i].parentNode;
+          // set the tab toggle class to be active-tab
+          parent.className+=' active-tab';
+        } 
+        else {
+          // remove the tab-active class from the other tabs
+          parent=tabsList[i].parentNode;
+          parent.className='';
+          // hide the other tabs content
+        	$(tabsList[i].hash).classList.add('hidden');
+        }
+      }
+    // show current tab content
+     $(data).classList.remove('hidden');
+};
+
 var tabs =document.getElementsByClassName("tab-link");
 
 for (var i = 0; i < tabs.length; i++) {
@@ -65,90 +89,152 @@ function saveLinks() {
 	var activeTab = location.hash;
 	var links = [];
 	var tmp = [];
-	var selectName = "";
-	var selecetURL = "";
+	var selectName;
+	var selecetURL;
+	
+	clearSelectOptions(activeTab);
+	
+	tmp = all(".reports-data");
 
-	if(activeTab == "#my-team-folders"){
-		tmp = all(".teamFolders-data");
-		selectName = "teamFolderName";
-		selectURL = "teamFolderURL";
-	}
-	else{
-		tmp = all(".reports-data");
-		selectName = "reportName";
-		selectURL = "reportURL";
-	}
-
-	for(var i=0; i<tmp.length; i++){
-		links[i] = tmp[i].children[1].value;
-
+	for(var i=0; i<tmp.length-1; i=i+2){
+		var name = tmp[i].children[1].value;
+		var url = tmp[i+1].children[1].value;
+		if(name != "" && url != ""){
+			links.push({
+				formId:"ReportsForm" ,
+				name:name ,
+				url:url
+			});
+		}		
 	}
 
-	var i =0;
-	var j=0;
-	while(i<links.length) {
-		localStorage.setItem(selectName+j, links[i]);
-		i++;
-		localStorage.setItem(selectURL+j, links[i]);
-		i++;
-		j++;
+	tmp = all(".teamFolders-data");
+	
+	for(var i=0; i<tmp.length-1; i=i+2){
+		var name = tmp[i].children[1].value;
+		var url = tmp[i+1].children[1].value;
+		
+		if(name != "" && url != ""){
+			links.push({
+				formId:"MyTeamFoldersForm" ,
+				name:name ,
+				url:url
+			});
+		}
 	}
+
+	localStorage.setItem('FormData', JSON.stringify(links));
 
 	updateSelect(activeTab);
 }
 
+
 function updateSelect(data) {
+		var formData = JSON.parse(localStorage.getItem("FormData"));
 
 		if(data == "#my-team-folders"){
-		var selectReports = $("#bookmarks-myTeamFolders");
-		for(var i=0; i<3; i++){
-			var val = localStorage.getItem("teamFolderName"+i);
-			if(val){
-				var myOption = document.createElement("option");
-				myOption.text = val;
-				myOption.value = val;
-				// myOption.setAttribute("id","teamFolder-op"+i); 
-				selectReports.appendChild(myOption);
-			}
-		}	
+			var selectReports = $("#bookmarks-myTeamFolders");
+			for(var i=0; i<formData.length; i++){
+				var formId = formData[i].formId;
+
+				if(formId == "MyTeamFoldersForm"){
+					var val = formData[i].name;
+					if(val != "") $("#bookmarks-myTeamFolders").classList.remove("hidden");
+					var myOption = document.createElement("option");
+					myOption.text = val;
+					myOption.value = val; 
+					selectReports.appendChild(myOption);
+				}	
+			}	
+		}
+
+		else{
+				var selectReports = $("#bookmarks-quickreports");
+				for(var i=0; i<formData.length; i++){
+					var formId = formData[i].formId;
+					if(formId == "ReportsForm"){
+						var val = formData[i].name;
+						if(val != "") $("#bookmarks-quickreports").classList.remove("hidden");
+						var myOption = document.createElement("option");
+						myOption.text = val;
+						myOption.value = val;
+						selectReports.appendChild(myOption);
+					}
+				}	
+		}
+
+		changeIFrame();
+}
+
+function clearSelectOptions(data){
+	var selectReports;
+	if(data == "#my-team-folders"){
+		selectReports = $("#bookmarks-myTeamFolders");
+	}
+	else{
+		selectReports = $("#bookmarks-quickreports");
 	}
 
-	else{
-		var selectReports = $("#bookmarks-quickreports");
-		for(var i=0; i<3; i++){
-			var valReports = localStorage.getItem("reportName"+i);
-			if(valReports){
-				var myOption = document.createElement("option");
-				myOption.text = valReports;
-				myOption.value = valReports;
-				//myOption.setAttribute("id","quickReport-op"+i);
-				selectReports.appendChild(myOption);
-			}
-		}	
+	for(var i=0; i<selectReports.childNodes.length; i++){
+			selectReports.remove(selectReports.i);
 	}
 }
+
+function isInputsNull(data){
+	var arr = [];
+	var returnVal = true;
+
+	if(data == "#my-team-folders")
+		arr = all(".teamFolders-data");
+	else{
+		arr = all(".reports-data");
+	}
+
+	for(var i =0; i<arr.length; i++){
+		var text = arr[i].children[1].value;
+		if(text != "")
+			returnVal = false;
+	}
+	return returnVal;
+}
+
+
 
 function changeIFrame() {
 	var activeTab = location.hash;
 	var newURL;
-	var selIndex;
 	var selReports;
 	var iframeWindow;
+	var selectedValue;
+	var formData = JSON.parse(localStorage.getItem("FormData"));
+
 	if(activeTab == "#my-team-folders"){
 		selReports = $("#bookmarks-myTeamFolders");
-		selIndex = selReports.selectedIndex;
-		newURL = localStorage.getItem("teamFolderURL"+selIndex);
-		iframeWindow = $("#teamFolders-frame");
+		selectedValue = selReports.value;
+		for(var i=0; i<formData.length; i++){
+			if(formData[i].name == selectedValue){
+				newURL = formData[i].url;
+				iframeWindow = $("#teamFolders-frame");
+				iframeWindow.src = newURL;
+				$("#expand-myTeamFolders").href = newURL;
+
+			}
+		}		
 	}
 	else{
-
 		selReports = $("#bookmarks-quickreports");
-		selIndex = selReports.selectedIndex;
-		newURL = localStorage.getItem("reportURL"+selIndex);
-		iframeWindow = $("#quickReports-frame");
+		selectedValue = selReports.value;
+		for(var i=0; i<formData.length; i++){
+			if(formData[i].name == selectedValue){
+				newURL = formData[i].url;
+				iframeWindow = $("#quickReports-frame");
+				iframeWindow.src = newURL;
+				$("#expand-quickreports").href = newURL;
+			}
+		}
 	}
 	
-	iframeWindow.src = newURL;
+	
 }
 
 
@@ -193,6 +279,7 @@ $("#reports-form").addEventListener('keyup' , function(e){
 $("#reports-form").addEventListener('keyup' , function(e){
 	if(e.keyCode == 13){
 		saveLinks();
+		$("#reports-form").classList.toggle("hidden");
 	}
 });
 
@@ -205,33 +292,57 @@ $("#folders-form").addEventListener('keyup' , function(e){
 $("#folders-form").addEventListener('keyup' , function(e){
 	if(e.keyCode == 13){
 		saveLinks();
+		$("#folders-form").classList.toggle("hidden");
 	}
 });
+
+function updatePage(response){
+	if(response != undefined)
+		$(".notifications").innerHTML = response.notification;
+}
 
 function init(){
 
 
-	// UTILS.ajax("data/config.json" , {done: pageUpdate});
+	UTILS.ajax("data/config.json" , {done: updatePage});
 	//window.location.hash = "#quick-reports";
+
+
+	var hashTab = window.location.hash;
+	 if(hashTab != "")
+	  	reloadTab(hashTab);
+	 
 
 	updateSelect("#quick-reports");
 	updateSelect("#my-team-folders");
 
-	// localStorage.clear();
-	// var selectOp = $(".selectLinks");
-	// selectOp.innerHTML = "";
+	//localStorage.clear();
 
 	document.getElementById("saveBtn-reports").addEventListener('click', function(e){
+		if( isInputsNull("#quick-reports") ){
+			clearSelectOptions("#quick-reports");
+			$("#reports-form").classList.toggle("hidden");
+			$("#bookmarks-quickreports").classList.add("hidden");
+			return;
+		}
 		if(isValid("quick-reports") == true){
 			saveLinks();
 			$("#reports-form").classList.toggle("hidden");
+			$("#bookmarks-quickreports").classList.remove("hidden");
 		}
 	});
 
 	document.getElementById("teamFolders-save-btn").addEventListener('click', function(e){
+		if( isInputsNull("#my-team-folders") ){
+			clearSelectOptions("#my-team-folders");
+			$("#folders-form").classList.toggle("hidden");
+			$("#bookmarks-myTeamFolders").classList.add("hidden");
+			return;
+		}
 		if(isValid("my-team-folders") == true){
 			saveLinks();
 			$("#folders-form").classList.toggle("hidden");
+			$("#bookmarks-myTeamFolders").classList.remove("hidden");
 		}
 	});
 
@@ -264,7 +375,6 @@ function init(){
 		$("#folderName1").focus();
 	});
 
-	
 }
 
 
