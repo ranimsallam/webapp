@@ -337,7 +337,7 @@ function updateActionsList(data){
 			var listId = "#actionList"+(i+1);
 			var list = $(listId);
 			for(var j=0; j<actionList.length; j++){
-				list.childNodes[j].childNodes[0].innerHTML = actionList[i].label;
+				((list.childNodes[j]).childNodes[0]).innerHTML = actionList[i].label;
 				list.childNodes[j].childNodes[0].href = actionList[i].url;
 			}
 		}
