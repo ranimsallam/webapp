@@ -317,6 +317,12 @@ function updateNavBoxes(data){
 			var newElement = document.createElement("p");
 			newElement.innerHTML = data[i].label;
 			navBox.insertBefore(newElement , navBox.childNodes[0]);
+
+			var menuCapId = "#menu-caption"+j;
+			var menuCap = $(menuCapId);
+			newElement = document.createElement("p");
+			newElement.innerHTML = data[i].actionsLabel;
+			menuCap.insertBefore(newElement , menuCap.childNodes[0]);
 		}
 	}
 	
@@ -330,8 +336,6 @@ function init(){
 
 
 	UTILS.ajax("data/config.json" , {done: updatePageFromeJSON});
-	//window.location.hash = "#quick-reports";
-
 
 	var hashTab = window.location.hash;
 	 if(hashTab != "")
@@ -340,8 +344,6 @@ function init(){
 
 	updateSelect("#quick-reports");
 	updateSelect("#my-team-folders");
-
-	//localStorage.clear();
 
 	document.getElementById("saveBtn-reports").addEventListener('click', function(e){
 		if( isInputsNull("#quick-reports") ){
