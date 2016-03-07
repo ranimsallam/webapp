@@ -301,7 +301,7 @@ function updatePageFromeJSON(response){
 }
 
 function updateNotificationArea(data){
-	if(response != undefined)
+	if(data != undefined)
 		$(".notifications").innerHTML = data;
 }
 
