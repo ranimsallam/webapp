@@ -131,7 +131,7 @@ function saveLinks() {
 
 function updateSelect(data) {
 		var formData = JSON.parse(localStorage.getItem("FormData"));
-
+		if(formData == null) return;
 		if(data == "#my-team-folders"){
 			var selectReports = $("#bookmarks-myTeamFolders");
 			for(var i=0; i<formData.length; i++){
@@ -326,10 +326,10 @@ function init(){
 	  	reloadTab(hashTab);
 	 
 
-	//updateSelect("#quick-reports");
-	//updateSelect("#my-team-folders");
+	updateSelect("#quick-reports");
+	updateSelect("#my-team-folders");
 
-	localStorage.clear();
+	//localStorage.clear();
 
 	document.getElementById("saveBtn-reports").addEventListener('click', function(e){
 		if( isInputsNull("#quick-reports") ){
