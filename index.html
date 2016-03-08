@@ -17,8 +17,8 @@
             <a href="#"><img id="netcraft-logo" src="img/logo-netcraft.svg" alt="netcraft"></a>
 
             <form class="search-box">
-                <label for="search"><span class="hidden">s</span></label>
-                <input type="search" name="q" placeholder="search" id="search">
+                <label for="searchInput"><span class="hidden">s</span></label>
+                <input type="search"  placeholder="search" id="searchInput">
             </form>
         </div>
     </header>
@@ -78,7 +78,7 @@
 
         <section class="tabs">
             <ul class="tabs-list">
-                <li class="active-tab"> <a class="tab-link" href="#quick-reports" rel="quick-reports"><span class="icon-external-link tab-icon"></span>  Quick Reports</a></li>
+                <li class="active-tab"> <a class="tab-link" href="#quick-reports" rel="quick-reports"><span class="icon-external-link tab-icon active-tab-icon"></span>  Quick Reports</a></li>
                 <li>  <a class="tab-link" href="#my-folders" rel="my-folders"> <span class="icon-star-o tab-icon"></span>  My Folders</a></li>
                 <li>  <a class="tab-link" href="#my-team-folders" rel="my-team-folders"><span class="icon-folder-open-o tab-icon"></span>  My Team Folders</a></li>
                 <li>  <a class="tab-link" href="#public-folders" rel="public-folders"><span class="icon-copy tab-icon"></span>  Public Folders</a></li>
@@ -116,35 +116,35 @@
                                     <ul>
                                         <li class="settings-row">
                                             <label>Report 01</label>
-                                            <div class="reports-data">
+                                            <div class="reports-data report-name">
                                                 <label for="reportName1">Name</label>
-                                                <input class="report-name" type="text" id="reportName1">
+                                                <input class="report-name" type="text" id="reportName1" placeholder=" Site Name">
                                             </div>
                                             <div class="reports-data">
                                                 <label for="reportUrl1">URL</label>
-                                                <input class="report-url" type="url" id="reportUrl1">
+                                                <input class="report-url" type="url" id="reportUrl1" placeholder=" Site Url">
                                             </div>
                                         </li>
                                         <li class="settings-row">
                                             <label>Report 02</label>
-                                            <div class="reports-data">
+                                            <div class="reports-data report-name">
                                                 <label for="reportName2">Name</label>
-                                                <input class="report-name" type="text" id="reportName2">
+                                                <input class="report-name" type="text" id="reportName2" placeholder=" Site Name">
                                             </div>
                                             <div class="reports-data">
                                                 <label for="reportUrl2">URL</label>
-                                                <input class="report-url" type="url" id="reportUrl2">
+                                                <input class="report-url" type="url" id="reportUrl2" placeholder=" Site Url">
                                             </div>
                                         </li>
                                         <li class="settings-row">
                                             <label>Report 03</label>
-                                            <div class="reports-data">
+                                            <div class="reports-data report-name">
                                                 <label for="reportName3">Name</label>
-                                                <input class="report-name" type="text" id="reportName3">
+                                                <input class="report-name" type="text" id="reportName3" placeholder=" Site Name">
                                             </div>
                                             <div class="reports-data">
                                                 <label for="reportUrl3">URL</label>
-                                                <input class="report-url" type="url" id="reportUrl3">
+                                                <input class="report-url" type="url" id="reportUrl3" placeholder=" Site Url">
                                             </div>
                                         </li>
                                     </ul>
@@ -156,7 +156,7 @@
                             </div> 
 
                         <div class="quickReports-frame-wrap folder-content">
-                            <iframe src="http://www.ynet.co.il" class="quickReports-frame" id="quickReports-frame"></iframe>
+                            <iframe src="" class="quickReports-frame" id="quickReports-frame"></iframe>
                         </div>
 
 
@@ -211,33 +211,33 @@
                                             <label>Folder 01</label>
                                             <div class="teamFolders-data">
                                                 <label for="folderName1">Name</label>
-                                                <input class="report-name" type="text" id="folderName1">
+                                                <input class="report-name" type="text" id="folderName1" placeholder=" Site Name">
                                             </div>
                                             <div class="teamFolders-data">
                                                 <label for="folderUrl1">URL</label>
-                                                <input class="report-url" type="url" id="folderUrl1">
+                                                <input class="report-url" type="url" id="folderUrl1" placeholder=" Site Url">
                                             </div>
                                         </li>
                                         <li>
                                             <label>Folder 02</label>
                                             <div class="teamFolders-data">
                                                 <label for="folderName2">Name</label>
-                                                <input class="report-name" type="text" id="folderName2">
+                                                <input class="report-name" type="text" id="folderName2" placeholder=" Site Name">
                                             </div>
                                             <div class="teamFolders-data">
                                                 <label for="folderUrl2">URL</label>
-                                                <input class="report-url" type="url" id="folderUrl2">
+                                                <input class="report-url" type="url" id="folderUrl2" placeholder=" Site Url">
                                             </div>
                                         </li>
                                         <li>
                                             <label>Folder 03</label>
                                             <div class="teamFolders-data">
                                                 <label for="folderName3">Name</label>
-                                                <input class="report-name" type="text" id="folderName3">
+                                                <input class="report-name" type="text" id="folderName3" placeholder=" Site Name">
                                             </div>
                                             <div class="teamFolders-data">
                                                 <label for="folderUrl3">URL</label>
-                                                <input class="report-url" type="url" id="folderUrl3">
+                                                <input class="report-url" type="url" id="folderUrl3" placeholder=" Site Url">
                                             </div>
                                         </li>
                                     </ul>
@@ -250,7 +250,7 @@
                         </div>
 
                         <div class="teamFolders-frame-wrap folder-content">
-                            <iframe src="http://www.w3schools.com" class="teamFolders-frame" id="teamFolders-frame"></iframe>
+                            <iframe src="" class="teamFolders-frame" id="teamFolders-frame"></iframe>
                         </div>
                 </div>
 

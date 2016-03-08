@@ -813,3 +813,11 @@ nav a {
     background-color: #ebebeb !important;
     color: #333333 !important;
 }
+
+.active-tab > a {
+    color: black;
+}
+
+.active-tab-icon{
+    color:black;
+}

@@ -31,40 +31,48 @@ if (document.addEventListener) {
 
 
 var set_tab = function(){
-        var tabsList = document.getElementsByClassName("tab-link");
-        // current tab hash
-        var active=this.hash;
+    var tabsList = document.getElementsByClassName("tab-link");
+   	var active=this.hash;
         
 
     for (var i = 0; i < tabsList.length; i++) {
         if (tabsList[i].hash == active) {
           parent=tabsList[i].parentNode;
-          // set the tab toggle class to be active-tab
           parent.className+=' active-tab';
+          tabsList[i].children[0].classList.add("active-tab-icon");
+          tabsList[i].style.color = "black";
         } 
         else {
-          // remove the tab-active class from the other tabs
           parent=tabsList[i].parentNode;
           parent.className='';
-          // hide the other tabs content
-        	$(tabsList[i].hash).classList.add('hidden');
+
+       	  $(tabsList[i].hash).classList.add('hidden');
+       	  tabsList[i].children[0].classList.remove("active-tab-icon");
+          tabsList[i].style.color = "white";
         }
       }
-    // show current tab content
-     $(active).classList.remove('hidden');
+    
+    $(active).classList.remove('hidden');
 
 };
 
-var reloadTab = function(data){
+
+function reloadTab(data){
         var tabsList = document.getElementsByClassName("tab-link");
         // current tab hash
         //var active=this.hash;
+        // window.location.hash = data;
+        //location.href = location.href.replace(location.hash, data);
+
+    window.location.hash = data;
 
     for (var i = 0; i < tabsList.length; i++) {
         if (tabsList[i].hash == data) {
           parent=tabsList[i].parentNode;
           // set the tab toggle class to be active-tab
           parent.className+=' active-tab';
+          tabsList[i].children[0].classList.add("active-tab-icon");
+          tabsList[i].style.color = "black";
         } 
         else {
           // remove the tab-active class from the other tabs
@@ -72,11 +80,14 @@ var reloadTab = function(data){
           parent.className='';
           // hide the other tabs content
         	$(tabsList[i].hash).classList.add('hidden');
+        	tabsList[i].children[0].classList.remove("active-tab-icon");
+        	tabsList[i].style.color = "white";
         }
       }
     // show current tab content
      $(data).classList.remove('hidden');
-};
+
+}
 
 var tabs =document.getElementsByClassName("tab-link");
 
@@ -178,6 +189,32 @@ function clearSelectOptions(data){
 	for(var i=0; i<selectReports.childNodes.length; i++){
 			selectReports.remove(selectReports.i);
 	}
+
+	deleteLinksFromLocalStorage(data);
+}
+
+function deleteLinksFromLocalStorage(data){
+
+	var formData = JSON.parse(localStorage.getItem("FormData"));
+	localStorage.removeItem("FormData");
+
+	var formId = "ReportsForm";
+	if(data == "#my-team-folders")
+		formId = "MyTeamFoldersForm";
+	var j=0;
+	for(var i=0; i<formData.length; i++){
+		if(formData[i].formId == formId)
+			j++;
+	}
+
+	if(data == "#my-team-folders"){
+		for(var i=0; i<j; i++)
+			formData.pop();
+	}
+	else{
+		formData.splice(0,j);
+	}
+	localStorage.setItem('FormData', JSON.stringify(formData));
 }
 
 function isInputsNull(data){
@@ -217,7 +254,6 @@ function changeIFrame() {
 				iframeWindow = $("#teamFolders-frame");
 				iframeWindow.src = newURL;
 				$("#expand-myTeamFolders").href = newURL;
-
 			}
 		}		
 	}
@@ -232,9 +268,7 @@ function changeIFrame() {
 				$("#expand-quickreports").href = newURL;
 			}
 		}
-	}
-	
-	
+	}	
 }
 
 
@@ -242,6 +276,7 @@ function isValid(data){
 	var returnVal = true;
 	var links = [];
 	var tmp = [];
+	var urlExp = new RegExp("https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,}", i); 
 	if(data == "quick-reports")
 		tmp = all(".reports-data");
 	else{
@@ -252,7 +287,9 @@ function isValid(data){
 		var name = tmp[i].children[1].value;
 		var url = tmp[i+1].children[1].value;
 
-		if(name!="" && url==""){
+
+
+		if(name!="" && url=="" ){
 			(tmp[i+1].children[1]).style.border = "ridge 1px #D8000C";
 			if(returnVal)
 				(tmp[i+1].children[1]).focus();
@@ -265,8 +302,41 @@ function isValid(data){
 				(tmp[i].children[1]).focus();
 			retyrnVal=false;
 		}
+
+		if(name!="" && url!="" && !urlExp.test(url)){
+			(tmp[i+1].children[1]).style.border = "ridge 1px #D8000C";
+			if(returnVal)
+				(tmp[i+1].children[1]).focus();
+			returnVal=false;
+		}
 	}
 	return returnVal;
+}
+
+
+function saveDataToInputs(){
+
+	var formData = JSON.parse(localStorage.getItem("FormData"));
+
+	for(var i=0; i<formData.length; i++){
+		var reportsNumber = 1;
+		var foldersNumber = 1;
+		if(formData[i].formId == "ReportsForm"){
+			var inputName = "#reportName"+reportsNumber;
+			var inputURL = "#reportUrl"+reportsNumber;
+			$(inputName).value = formData[i].name;
+			$(inputURL).value = formData[i].url;
+			reportsNumber++;
+		}
+
+		if(formData[i].formId == "MyTeamFoldersForm "){
+			var inputName = "#folderName"+reportsNumber;
+			var inputURL = "#foldertUrl"+reportsNumber;
+			$(inputName).value = formData[i].name;
+			$(inputURL).value = formData[i].url;
+			foldersNumber++;
+		}
+	}
 }
 
 
@@ -278,8 +348,7 @@ $("#reports-form").addEventListener('keyup' , function(e){
 
 $("#reports-form").addEventListener('keyup' , function(e){
 	if(e.keyCode == 13){
-		saveLinks();
-		$("#reports-form").classList.toggle("hidden");
+		saveButton("#quick-reports");
 	}
 });
 
@@ -291,8 +360,7 @@ $("#folders-form").addEventListener('keyup' , function(e){
 
 $("#folders-form").addEventListener('keyup' , function(e){
 	if(e.keyCode == 13){
-		saveLinks();
-		$("#folders-form").classList.toggle("hidden");
+		saveButton("my-team-folders");
 	}
 });
 
@@ -348,45 +416,116 @@ function updateActionsList(data){
 	}
 }
 
-function init(){
+function search(data){
 
+	var selReports = $("#bookmarks-quickreports");
 
-	UTILS.ajax("data/config.json" , {done: updatePageFromeJSON});
+	for(var i=0; i<selReports.options.length; i++){
+		if(selReports.options[i].text == data){
+			reloadTab("#quick-reports");
+			var newLinkIndex = selReports.options[i].index;
+			selReports.selectedIndex = newLinkIndex;
+			changeIFrame();
+			return true;
+		}
+	}
 
-	var hashTab = window.location.hash;
-	 if(hashTab != "")
-	  	reloadTab(hashTab);
-	 
+	selReports = $("#bookmarks-myTeamFolders");
 
-	updateSelect("#quick-reports");
-	updateSelect("#my-team-folders");
+	for(var i=0; i<selReports.options.length; i++){
+		if(selReports.options[i].text == data){
+			reloadTab("#my-team-folders");
+			var newLinkIndex = selReports.options[i].index;
+			selReports.selectedIndex = newLinkIndex;
+			changeIFrame();
+			return true;
+		}
+	}
+	return false;
+}
 
-	document.getElementById("saveBtn-reports").addEventListener('click', function(e){
+document.getElementById("searchInput").addEventListener('search', function(e){
+		var data = document.getElementById("searchInput").value;
+		if(!search(data)){
+			var result = "The searched report " + data + " was not found."
+			updateNotificationArea(result);
+			return;
+		}
+	});
+
+function saveButton(data){
+	
+	if(data == "#quick-reports"){
 		if( isInputsNull("#quick-reports") ){
 			clearSelectOptions("#quick-reports");
 			$("#reports-form").classList.toggle("hidden");
 			$("#bookmarks-quickreports").classList.add("hidden");
+			$("#quickReports-frame").classList.add("hidden");
+			$("#expand-quickreports").classList.add("hidden");
 			return;
 		}
 		if(isValid("quick-reports") == true){
 			saveLinks();
 			$("#reports-form").classList.toggle("hidden");
 			$("#bookmarks-quickreports").classList.remove("hidden");
+			$("#quickReports-frame").classList.add("hidden");
+			$("#expand-quickreports").classList.remove("hidden");
 		}
-	});
-
-	document.getElementById("teamFolders-save-btn").addEventListener('click', function(e){
+	}
+	else if(data == "#my-team-folders"){
 		if( isInputsNull("#my-team-folders") ){
 			clearSelectOptions("#my-team-folders");
 			$("#folders-form").classList.toggle("hidden");
 			$("#bookmarks-myTeamFolders").classList.add("hidden");
+			$("#teamFolders-frame").classList.add("hidden");
+			$("#expand-myTeamFolders").classList.add("hidden");
 			return;
 		}
 		if(isValid("my-team-folders") == true){
 			saveLinks();
 			$("#folders-form").classList.toggle("hidden");
 			$("#bookmarks-myTeamFolders").classList.remove("hidden");
+			$("#teamFolders-frame").classList.remove("hidden");
+			$("#expand-myTeamFolders").classList.remove("hidden");
 		}
+	}
+}
+
+
+function saveLastSelectedTab(){
+	var tabName = window.location.hash.substring(1);
+	localStorage.setItem("lastTab", tabName);
+}
+
+function reloadLastTab(){
+	var tabName = localStorage.getItem("lastTab");
+	if(tabName != "")
+		reloadTab(tabName);
+}
+
+function init(){
+
+
+	UTILS.ajax("data/config.json" , {done: updatePageFromeJSON});
+
+	var hashTab = window.location.hash;
+	   if(hashTab != "")
+	    	reloadTab(hashTab);
+	   else{
+	   		window.location.hash = "#quick-reports";
+	   }
+	 
+	//reloadLastTab();
+	updateSelect("#quick-reports");
+	updateSelect("#my-team-folders");
+	saveDataToInputs();
+
+	document.getElementById("saveBtn-reports").addEventListener('click', function(e){
+		saveButton("#quick-reports");
+	});
+
+	document.getElementById("teamFolders-save-btn").addEventListener('click', function(e){
+		saveButton("#my-team-folders");
 	});
 
 	document.getElementById("bookmarks-quickreports").addEventListener('change', function(e){
@@ -419,9 +558,5 @@ function init(){
 	});
 
 }
-
-
-
-
 
 window.onLoad = init();
