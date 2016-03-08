@@ -314,10 +314,10 @@ function isValid(data){
 }
 
 
-function saveDataToInputs(){
+function putDataToInputs(){
 
 	var formData = JSON.parse(localStorage.getItem("FormData"));
-
+	if(formData == null) return;
 	for(var i=0; i<formData.length; i++){
 		var reportsNumber = 1;
 		var foldersNumber = 1;
@@ -518,7 +518,7 @@ function init(){
 	//reloadLastTab();
 	updateSelect("#quick-reports");
 	updateSelect("#my-team-folders");
-	saveDataToInputs();
+	putDataToInputs();
 
 	document.getElementById("saveBtn-reports").addEventListener('click', function(e){
 		saveButton("#quick-reports");
