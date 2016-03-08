@@ -443,13 +443,15 @@ function search(data){
 }
 
 document.getElementById("searchInput").addEventListener('search', function(e){
-		var data = document.getElementById("searchInput").value;
-		if(!search(data)){
-			var result = "The searched report " + data + " was not found."
-			updateNotificationArea(result);
-			return;
-		}
+			var data = document.getElementById("searchInput").value;
+			if(!search(data)){
+				var result = "The searched report " + data + " was not found."
+				updateNotificationArea(result);
+				return;
+			}
 	});
+
+
 
 function saveButton(data){
 	
