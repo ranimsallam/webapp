@@ -189,8 +189,6 @@ function clearSelectOptions(data){
 	for(var i=0; i<selectReports.childNodes.length; i++){
 			selectReports.remove(selectReports.i);
 	}
-
-	deleteLinksFromLocalStorage(data);
 }
 
 function deleteLinksFromLocalStorage(data){
@@ -459,6 +457,7 @@ function saveButton(data){
 	if(data == "#my-team-folders"){
 		if( isInputsNull("#my-team-folders") ){
 			clearSelectOptions("#my-team-folders");
+			deleteLinksFromLocalStorage("#my-team-folders");
 			$("#folders-form").classList.toggle("hidden");
 			$("#bookmarks-myTeamFolders").classList.add("hidden");
 			$("#teamFolders-frame").classList.add("hidden");
@@ -477,6 +476,7 @@ function saveButton(data){
 	else{
 		if( isInputsNull("#quick-reports") ){
 			clearSelectOptions("#quick-reports");
+			deleteLinksFromLocalStorage("#quick-reports");
 			$("#reports-form").classList.toggle("hidden");
 			$("#bookmarks-quickreports").classList.add("hidden");
 			$("#quickReports-frame").classList.add("hidden");
