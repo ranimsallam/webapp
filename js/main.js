@@ -489,7 +489,7 @@ function saveButton(data){
 			saveLinks();
 			$("#reports-form").classList.toggle("hidden");
 			$("#bookmarks-quickreports").classList.remove("hidden");
-			$("#quickReports-frame").classList.add("hidden");
+			$("#quickReports-frame").classList.remove("hidden");
 			$("#expand-quickreports").classList.remove("hidden");
 		}
 	}
@@ -515,9 +515,9 @@ function init(){
 	var hashTab = window.location.hash;
 	   if(hashTab != "")
 	    	reloadTab(hashTab);
-	   // else{
-	   // 		window.location.hash = "#quick-reports";
-	   // }
+	   else{
+	   		window.location.hash = "#quick-reports";
+	   }
 	 
 	//reloadLastTab();
 	updateSelect("#quick-reports");
