@@ -455,24 +455,8 @@ document.getElementById("searchInput").addEventListener('search', function(e){
 
 function saveButton(data){
 	
-	if(data == "#quick-reports"){
-		if( isInputsNull("#quick-reports") ){
-			clearSelectOptions("#quick-reports");
-			$("#reports-form").classList.toggle("hidden");
-			$("#bookmarks-quickreports").classList.add("hidden");
-			$("#quickReports-frame").classList.add("hidden");
-			$("#expand-quickreports").classList.add("hidden");
-			return;
-		}
-		if(isValid("quick-reports") == true){
-			saveLinks();
-			$("#reports-form").classList.toggle("hidden");
-			$("#bookmarks-quickreports").classList.remove("hidden");
-			$("#quickReports-frame").classList.add("hidden");
-			$("#expand-quickreports").classList.remove("hidden");
-		}
-	}
-	else if(data == "#my-team-folders"){
+	
+	if(data == "#my-team-folders"){
 		if( isInputsNull("#my-team-folders") ){
 			clearSelectOptions("#my-team-folders");
 			$("#folders-form").classList.toggle("hidden");
@@ -487,6 +471,24 @@ function saveButton(data){
 			$("#bookmarks-myTeamFolders").classList.remove("hidden");
 			$("#teamFolders-frame").classList.remove("hidden");
 			$("#expand-myTeamFolders").classList.remove("hidden");
+		}
+	}
+
+	else{
+		if( isInputsNull("#quick-reports") ){
+			clearSelectOptions("#quick-reports");
+			$("#reports-form").classList.toggle("hidden");
+			$("#bookmarks-quickreports").classList.add("hidden");
+			$("#quickReports-frame").classList.add("hidden");
+			$("#expand-quickreports").classList.add("hidden");
+			return;
+		}
+		if(isValid("quick-reports") == true){
+			saveLinks();
+			$("#reports-form").classList.toggle("hidden");
+			$("#bookmarks-quickreports").classList.remove("hidden");
+			$("#quickReports-frame").classList.add("hidden");
+			$("#expand-quickreports").classList.remove("hidden");
 		}
 	}
 }
@@ -511,9 +513,9 @@ function init(){
 	var hashTab = window.location.hash;
 	   if(hashTab != "")
 	    	reloadTab(hashTab);
-	   else{
-	   		window.location.hash = "#quick-reports";
-	   }
+	   // else{
+	   // 		window.location.hash = "#quick-reports";
+	   // }
 	 
 	//reloadLastTab();
 	updateSelect("#quick-reports");
