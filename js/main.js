@@ -516,7 +516,7 @@ function init(){
 	   if(hashTab != "")
 	    	reloadTab(hashTab);
 	   else{
-	   		window.location.hash = "#quick-reports";
+	   		 reloadTab("#quick-reports");
 	   }
 	 
 	//reloadLastTab();
