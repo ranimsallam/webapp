@@ -275,6 +275,7 @@ function isValid(data){
 	var links = [];
 	var tmp = [];
 	var urlExp = new RegExp("https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,}", i); 
+	var linkExp = new RegExp(/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/);
 	if(data == "quick-reports")
 		tmp = all(".reports-data");
 	else{
@@ -288,25 +289,45 @@ function isValid(data){
 
 
 		if(name!="" && url=="" ){
-			(tmp[i+1].children[1]).style.border = "ridge 1px #D8000C";
-			if(returnVal)
+			(tmp[i+1].children[1]).classList.add("error-input");
+			if(returnVal){
 				(tmp[i+1].children[1]).focus();
+				(tmp[i+1].children[1]).style.outline = "none";
+			}
+
 			returnVal=false;
 		}
 
-		if(name=="" && url!=""){
-			(tmp[i].children[1]).style.border = "ridge 1px #D8000C";
-			if(returnVal)
+		else if(name=="" && url!=""){
+			(tmp[i].children[1]).classList.add("error-input");
+			if(returnVal){
 				(tmp[i].children[1]).focus();
-			retyrnVal=false;
-		}
-
-		if(name!="" && url!="" && !urlExp.test(url)){
-			(tmp[i+1].children[1]).style.border = "ridge 1px #D8000C";
-			if(returnVal)
-				(tmp[i+1].children[1]).focus();
+				(tmp[i+1].children[1]).style.outline = "none";
+			}
 			returnVal=false;
 		}
+
+		else{
+			tmp[i].children[1].classList.remove("error-input");
+			tmp[i+1].children[1].classList.remove("error-input");
+		}
+
+		if(name!="" && url!="" && ( !urlExp.test(url) && !linkExp.test(url) ) ){
+			(tmp[i+1].children[1]).classList.add("error-input");
+			if(returnVal){
+				(tmp[i+1].children[1]).focus();
+				(tmp[i+1].children[1]).style.outline = "none";
+			}
+			returnVal=false;
+		}
+		if(!urlExp.test(url) && linkExp.test(url)){
+			var newURL = "http://www.";
+			newURL+=url;
+			tmp[i+1].children[1].value = newURL;
+			tmp[i+1].children[1].text = newURL;
+			returnVal=true;
+		}
+
 	}
 	return returnVal;
 }
@@ -419,7 +440,8 @@ function search(data){
 	var selReports = $("#bookmarks-quickreports");
 
 	for(var i=0; i<selReports.options.length; i++){
-		if(selReports.options[i].text == data){
+		if(selReports.options[i].text == data ||
+			selReports.options[i].text.search(data)!=-1){
 			reloadTab("#quick-reports");
 			var newLinkIndex = selReports.options[i].index;
 			selReports.selectedIndex = newLinkIndex;
@@ -431,7 +453,8 @@ function search(data){
 	selReports = $("#bookmarks-myTeamFolders");
 
 	for(var i=0; i<selReports.options.length; i++){
-		if(selReports.options[i].text == data){
+		if(selReports.options[i].text == data ||
+			selReports.options[i].text.search(data)!=-1){
 			reloadTab("#my-team-folders");
 			var newLinkIndex = selReports.options[i].index;
 			selReports.selectedIndex = newLinkIndex;

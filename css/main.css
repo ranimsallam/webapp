@@ -821,3 +821,7 @@ nav a {
 .active-tab-icon{
     color:black;
 }
+
+.error-input{
+    border:ridge 1px #D8000C;
+}
