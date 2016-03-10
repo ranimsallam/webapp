@@ -53,6 +53,7 @@ var set_tab = function(){
       }
     
     $(active).classList.remove('hidden');
+    saveLastSelectedTab(active);
 
 };
 
@@ -86,6 +87,7 @@ function reloadTab(data){
       }
     // show current tab content
      $(data).classList.remove('hidden');
+     saveLastSelectedTab(data);
 
 }
 
@@ -519,9 +521,9 @@ function saveButton(data){
 }
 
 
-function saveLastSelectedTab(){
-	var tabName = window.location.hash.substring(1);
-	localStorage.setItem("lastTab", tabName);
+function saveLastSelectedTab(data){
+	//var tabName = window.location.hash.substring(1);
+	localStorage.setItem("lastTab", data);
 }
 
 function reloadLastTab(){
@@ -536,13 +538,13 @@ function init(){
 	UTILS.ajax("data/config.json" , {done: updatePageFromeJSON});
 
 	var hashTab = window.location.hash;
-	   if(hashTab != "")
-	    	reloadTab(hashTab);
-	   else{
-	   		 reloadTab("#quick-reports");
-	   }
+	   // if(hashTab != "")
+	    	//reloadTab(hashTab);
+	    	reloadLastTab();
+	    // else{
+	    // 		 reloadTab(hashTab);
+	    // }
 	 
-	//reloadLastTab();
 	updateSelect("#quick-reports");
 	updateSelect("#my-team-folders");
 	putDataToInputs();
