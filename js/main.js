@@ -59,11 +59,7 @@ var set_tab = function(){
 
 
 function reloadTab(data){
-        var tabsList = document.getElementsByClassName("tab-link");
-        // current tab hash
-        //var active=this.hash;
-        // window.location.hash = data;
-        //location.href = location.href.replace(location.hash, data);
+    var tabsList = document.getElementsByClassName("tab-link");
 
     window.location.hash = data;
 
@@ -569,12 +565,16 @@ function init(){
 
 	document.getElementById("btnSettings-quickreports").addEventListener('click', function(e){
 		$("#btnSettings-quickreports").classList.toggle("active");
+		$("#btnSettings-quickreports").classList.toggle("settingsBtn-greyBG");
+		$("#btnSettings-quickreports").classList.toggle("settingsBtn-whiteBG");
 		$("#reports-form").classList.toggle("hidden");
 		$("#reportName1").focus();
 	});
 
 	document.getElementById("team-folder-settings-btn").addEventListener('click', function(e){
 		$("#folders-form").classList.toggle("active");
+		$("#team-folder-settings-btn").classList.toggle("settingsBtn-greyBG");
+		$("#team-folder-settings-btn").classList.toggle("settingsBtn-whiteBG");
 		$("#folders-form").classList.toggle("hidden");
 		$("#folderName1").focus();
 	});

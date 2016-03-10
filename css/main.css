@@ -582,9 +582,12 @@ nav a {
 }
 
 #btnSettings-quickreports{
-    background: white;
     border: none;
     height: 2.5em;
+}
+
+.btnSettings-greyBG{
+    background: rgb(235, 235, 235);
 }
 
 .reports-options {
@@ -801,7 +804,6 @@ nav a {
 }
 
 #team-folder-settings-btn {
-    background: white;
     border: none;
     height: 2.5em;
 }
@@ -824,4 +826,8 @@ nav a {
 
 .error-input{
     border:ridge 1px #D8000C;
+}
+
+.settingsBtn-whiteBG{
+    background: white;
 }
