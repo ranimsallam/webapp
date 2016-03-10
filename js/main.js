@@ -522,13 +522,14 @@ function saveButton(data){
 
 
 function saveLastSelectedTab(data){
-	//var tabName = window.location.hash.substring(1);
 	localStorage.setItem("lastTab", data);
 }
 
 function reloadLastTab(){
 	var tabName = localStorage.getItem("lastTab");
-	if(tabName != "")
+	if(tabName == null)
+		reloadTab("#quick-reports");
+	else if(tabName != "")
 		reloadTab(tabName);
 }
 
@@ -536,15 +537,7 @@ function init(){
 
 
 	UTILS.ajax("data/config.json" , {done: updatePageFromeJSON});
-
-	var hashTab = window.location.hash;
-	   // if(hashTab != "")
-	    	//reloadTab(hashTab);
-	    	reloadLastTab();
-	    // else{
-	    // 		 reloadTab(hashTab);
-	    // }
-	 
+	reloadLastTab();
 	updateSelect("#quick-reports");
 	updateSelect("#my-team-folders");
 	putDataToInputs();
