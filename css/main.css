@@ -587,7 +587,7 @@ nav a {
 }
 
 .btnSettings-greyBG{
-    background: rgb(235, 235, 235);
+    background: none;/*rgb(235, 235, 235)*/
 }
 
 .reports-options {
@@ -598,6 +598,7 @@ nav a {
 .reports-options-buttons {
     height: 2em;
     text-align: -webkit-right;
+   /* float: right;*/
 }
 
 #tab-content {
@@ -614,11 +615,17 @@ nav a {
 
 
 .settings-reports {
+    /*background: white;
+    padding: 0.5%;
+    width: 68.1%;
+    position: absolute;*/
+
     background: white;
     /* height: 36%; */
     padding: 0.5%;
-    width: 68.1%;
+    width: 69.68%;
     position: absolute;
+    margin-left: 2.3%;
 }
 
 
@@ -742,7 +749,7 @@ nav a {
 #my-team-folders ,
 #my-folders ,
 #public-folders {
-     width: 90%;
+     width: 95%;
    background: rgb(235, 235, 235);
    /* display: none;*/
     /*position: relative;*/
@@ -830,4 +837,8 @@ nav a {
 
 .settingsBtn-whiteBG{
     background: white;
+}
+
+.bookmarks {
+    margin-left: 3.2%;
 }

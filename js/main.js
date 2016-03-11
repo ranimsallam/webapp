@@ -216,18 +216,27 @@ function deleteLinksFromLocalStorage(data){
 function isInputsNull(data){
 	var arr = [];
 	var returnVal = true;
+	var frame;
 
-	if(data == "#my-team-folders")
+	if(data == "#my-team-folders"){
 		arr = all(".teamFolders-data");
+		frame = $("#teamFolders-frame");
+	}
 	else{
 		arr = all(".reports-data");
+		frame = $("#quickReports-frame");
 	}
 
 	for(var i =0; i<arr.length; i++){
 		var text = arr[i].children[1].value;
-		if(text != "")
+		if(text != ""){
 			returnVal = false;
+		}
 	}
+	var d = frame.src;
+
+	if(returnVal)
+		frame.src = "";
 	return returnVal;
 }
 
@@ -484,7 +493,6 @@ function saveButton(data){
 			$("#folders-form").classList.toggle("hidden");
 			$("#bookmarks-myTeamFolders").classList.add("hidden");
 			$("#teamFolders-frame").classList.add("hidden");
-			$("#expand-myTeamFolders").classList.add("hidden");
 			return;
 		}
 		if(isValid("my-team-folders") == true){
@@ -492,7 +500,6 @@ function saveButton(data){
 			$("#folders-form").classList.toggle("hidden");
 			$("#bookmarks-myTeamFolders").classList.remove("hidden");
 			$("#teamFolders-frame").classList.remove("hidden");
-			$("#expand-myTeamFolders").classList.remove("hidden");
 		}
 	}
 
@@ -503,7 +510,6 @@ function saveButton(data){
 			$("#reports-form").classList.toggle("hidden");
 			$("#bookmarks-quickreports").classList.add("hidden");
 			$("#quickReports-frame").classList.add("hidden");
-			$("#expand-quickreports").classList.add("hidden");
 			return;
 		}
 		if(isValid("quick-reports") == true){
@@ -511,11 +517,11 @@ function saveButton(data){
 			$("#reports-form").classList.toggle("hidden");
 			$("#bookmarks-quickreports").classList.remove("hidden");
 			$("#quickReports-frame").classList.remove("hidden");
-			$("#expand-quickreports").classList.remove("hidden");
 		}
 	}
-}
 
+	toggleExpandBtn();
+}
 
 function saveLastSelectedTab(data){
 	localStorage.setItem("lastTab", data);
@@ -529,6 +535,20 @@ function reloadLastTab(){
 		reloadTab(tabName);
 }
 
+function toggleExpandBtn(){
+	if( $("#quickReports-frame").src == ""){
+		$("#expand-quickreports").classList.add("hidden");
+	}else{
+		$("#expand-quickreports").classList.remove("hidden");
+	}
+
+	if($("#teamFolders-frame").src == ""){
+		$("#expand-myTeamFolders").classList.add("hidden");
+	}else{
+		$("#expand-myTeamFolders").classList.remove("hidden");
+	}
+}
+
 function init(){
 
 
@@ -536,14 +556,19 @@ function init(){
 	reloadLastTab();
 	updateSelect("#quick-reports");
 	updateSelect("#my-team-folders");
+	toggleExpandBtn();
 	putDataToInputs();
 
 	document.getElementById("saveBtn-reports").addEventListener('click', function(e){
 		saveButton("#quick-reports");
+		$("#btnSettings-quickreports").classList.toggle("settingsBtn-greyBG");
+		$("#btnSettings-quickreports").classList.toggle("settingsBtn-whiteBG");
 	});
 
 	document.getElementById("teamFolders-save-btn").addEventListener('click', function(e){
 		saveButton("#my-team-folders");
+		$("#team-folder-settings-btn").classList.toggle("settingsBtn-greyBG");
+		$("#team-folder-settings-btn").classList.toggle("settingsBtn-whiteBG");
 	});
 
 	document.getElementById("bookmarks-quickreports").addEventListener('change', function(e){
