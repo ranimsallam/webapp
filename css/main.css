@@ -613,6 +613,14 @@ nav a {
     width: 10em;
 }
 
+.reports-data > label{
+    position: absolute;
+    font-size: 1.3em;
+}
+
+.reports-data > label + input {
+    font-size: 1em;
+}
 
 .settings-reports {
     /*background: white;
@@ -695,7 +703,7 @@ nav a {
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .settings-reports > form > ul > li > div > input {
     position: absolute;
-    margin-left: 5em;
+    margin-left: 4em;
 }
 
 
