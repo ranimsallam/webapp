@@ -412,62 +412,8 @@ $("#reports-form").addEventListener('keyup' , function(e){
 		$("#reports-form").classList.toggle("hidden");
 		return;
 	}
-	focusedId = document.activeElement.getAttribute('id');
-	//Right arrow
-	if(e.keyCode == 39){
-		RightArrowFormEvent("#reports-form");
-	}
-	//Left arrow
-	if(e.keyCode == 37){
-		LeftArrowFormEvent("#reports-form");
-	}
 });
 
-function RightArrowFormEvent(data){
-	var name;
-	var url;
-	if(data == "#folders-form"){
-		name = "folderName";
-		url = "folderUrl";
-	}else{
-		name = "reportName";
-		url = "reportUrl";
-	}
-	for(var i=1; i<=3; i++){
-			if(focusedId == name+i){
-				$("#"+url+i).focus();
-				return;
-			}
-			if(focusedId == url+i && i<3){
-				$("#"+name+(i+1)).focus();
-				return;
-			}
-		}
-}
-
-
-function LeftArrowFormEvent(data){
-	var name;
-	var url;
-	if(data == "#folders-form"){
-		name = "folderName";
-		url = "folderUrl";
-	}else{
-		name = "reportName";
-		url = "reportUrl";
-	}
-
-	for(var i=1; i<=3; i++){
-			if(focusedId == name+i && i>1){
-				$("#"+url+(i-1)).focus();
-				return;
-			}
-			if(focusedId == url+i){
-				$("#"+name+i).focus();
-				return;
-			}
-		}
-}
 
 $("#folders-form").addEventListener('keyup' , function(e){
 	//ESC
@@ -479,24 +425,6 @@ $("#folders-form").addEventListener('keyup' , function(e){
 	if(e.keyCode == 13){
 		saveButton("my-team-folders");
 		return;
-	}
-
-	focusedId = document.activeElement.getAttribute('id');
-	//Right arrow
-	if(e.keyCode == 39){
-		RightArrowEvent("#folders-form");
-	}
-	//UP arrow
-	if(e.keyCode == 38){
-		UpArrowEvent("#folders-form");	
-	}
-	//Down arrow
-	if(e.keyCode == 40){
-		DownArrowEvent("#folders-form");
-	}
-	//Left arrow
-	if(e.keyCode == 37){
-		LeftArrowEvent("#folders-form");
 	}
 });
 
