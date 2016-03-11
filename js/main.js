@@ -367,28 +367,160 @@ function putDataToInputs(){
 
 
 $("#reports-form").addEventListener('keyup' , function(e){
-	if(e.keyCode == 27){
-		$("#reports-form").classList.toggle("hidden");
-	}
-});
-
-$("#reports-form").addEventListener('keyup' , function(e){
+	//Enter
 	if(e.keyCode == 13){
 		saveButton("#quick-reports");
+		return;
+	}
+	//ESC
+	if(e.keyCode == 27){
+		$("#reports-form").classList.toggle("hidden");
+		return;
+	}
+	focusedId = document.activeElement.getAttribute('id');
+	//Right arrow
+	if(e.keyCode == 39){
+		RightArrowEvent("#reports-form");
+	}
+	//UP arrow
+	if(e.keyCode == 38){
+		UpArrowEvent("#reports-form");	
+	}
+	//Down arrow
+	if(e.keyCode == 40){
+		DownArrowEvent("#reports-form");
+	}
+	//Left arrow
+	if(e.keyCode == 37){
+		LeftArrowEvent("#reports-form");
 	}
 });
 
+function RightArrowEvent(data){
+	var name;
+	var url;
+	if(data == "#folders-form"){
+		name = "folderName";
+		url = "folderUrl";
+	}else{
+		name = "reportName";
+		url = "reportUrl";
+	}
+	for(var i=1; i<=3; i++){
+			if(focusedId == name+i){
+				$("#"+url+i).focus();
+				return;
+			}
+			if(focusedId == url+i && i<3){
+				$("#"+name+(i+1)).focus();
+				return;
+			}
+		}
+}
+
+function UpArrowEvent(data){
+	var name;
+	var url;
+	if(data == "#folders-form"){
+		name = "folderName";
+		url = "folderUrl";
+	}else{
+		name = "reportName";
+		url = "reportUrl";
+	}
+
+	for(var i=1; i<=3; i++){
+			if(focusedId == name+i && i>0){
+				$("#"+name+(i-1)).focus();
+				return;
+			}
+			if(focusedId == url+i && i>0){
+				$("#url"+(i-1)).focus();
+				return;
+			}
+		}
+}
+
+function DownArrowEvent(data){
+	var name;
+	var url;
+	if(data == "#folders-form"){
+		name = "folderName";
+		url = "folderUrl";
+	}else{
+		name = "reportName";
+		url = "reportUrl";
+	}
+
+	for(var i=1; i<=3; i++){
+			if(focusedId == name+i && i<3){
+				$("#"+name+(i+1)).focus();
+				return;
+			}
+			if(focusedId == url+i && i<3){
+				$("#"+url+(i+1)).focus();
+				return;
+			}
+		}
+}
+
+function LeftArrowEvent(data){
+	var name;
+	var url;
+	if(data == "#folders-form"){
+		name = "folderName";
+		url = "folderUrl";
+	}else{
+		name = "reportName";
+		url = "reportUrl";
+	}
+
+	for(var i=1; i<=3; i++){
+			if(focusedId == name+i && i>1){
+				$("#"+url+(i-1)).focus();
+				return;
+			}
+			if(focusedId == url+i){
+				$("#"+name+i).focus();
+				return;
+			}
+		}
+}
+
 $("#folders-form").addEventListener('keyup' , function(e){
+	//ESC
 	if(e.keyCode == 27){
 		$("#folders-form").classList.toggle("hidden");
+		return;
+	}
+	//Enter
+	if(e.keyCode == 13){
+		saveButton("my-team-folders");
+		return;
+	}
+
+	focusedId = document.activeElement.getAttribute('id');
+	//Right arrow
+	if(e.keyCode == 39){
+		RightArrowEvent("#folders-form");
+	}
+	//UP arrow
+	if(e.keyCode == 38){
+		UpArrowEvent("#folders-form");	
+	}
+	//Down arrow
+	if(e.keyCode == 40){
+		DownArrowEvent("#folders-form");
+	}
+	//Left arrow
+	if(e.keyCode == 37){
+		LeftArrowEvent("#folders-form");
 	}
 });
 
-$("#folders-form").addEventListener('keyup' , function(e){
-	if(e.keyCode == 13){
-		saveButton("my-team-folders");
-	}
-});
+
+
+
 
 function updatePageFromeJSON(response){
 	updateNotificationArea(response.notification);
@@ -444,7 +576,12 @@ function updateActionsList(data){
 }
 
 function updateTabsContent(data){
-	$(".nameLabel").innerHTML = data[0].options.rowLabel;
+	all(".nameLabel").innerHTML = data[0].options.rowLabel;
+	$("#myFoldersExpandTarget").href = data[1].options.url;
+	$("#myFoldersFrame").src = data[1].options.url;
+	all(".folderLabel").innerHTML = data[2].options.rowLabel;
+	$("#publicFoldersExpandTarget").href = data[3].options.url;
+	$("#publicFoldersFrame").href = data[3].options.url;
 }
 
 function search(data){
