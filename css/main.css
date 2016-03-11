@@ -641,7 +641,9 @@ nav a {
     padding-left: 0;
 }
 
-.settings-reports > form > ul > li > div {
+/*.settings-reports > form > ul > li > div*/
+.settings-row > div ,
+.settingsFolder-row > div {
     display: inline-block;
 
     /*!!!!!!!!!!!!!!*/
@@ -649,7 +651,9 @@ nav a {
     margin-left: 15%;
 }
 
-.settings-reports > form > ul > li {
+/*.settings-reports > form > ul > li*/
+.settings-row ,
+.settingsFolder-row {
     width: 100%;
     list-style-type: none;
     background: rgb(235, 235, 235);

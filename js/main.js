@@ -583,7 +583,7 @@ function updateTabsContent(data){
 	$("#myFoldersExpandTarget").href = data[1].options.url;
 	$("#myFolderFrame").src = data[1].options.url;
 	$("#publicFoldersExpandTarget").href = data[3].options.url;
-	$("#publicFoldersFrame").href = data[3].options.url;
+	$("#publicFoldersFrame").src = data[3].options.url;
 }
 
 function search(data){
