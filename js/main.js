@@ -576,8 +576,9 @@ function updateActionsList(data){
 }
 
 function updateTabsContent(data){
-	var d = data[0].options.rowLabel;
-	all(".nameLabel").innerHTML = data[0].options.rowLabel;
+	for(var i=1; i<=3; i++){
+		$(".nameLabe"+i).innerHTML = data[0].options.rowLabel+" 0"+i;
+	}
 	$("#myFoldersExpandTarget").href = data[1].options.url;
 	$("#myFolderFrame").src = data[1].options.url;
 	all(".folderLabel").innerHTML = data[2].options.rowLabel;
