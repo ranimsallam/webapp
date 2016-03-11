@@ -785,7 +785,9 @@ nav a {
 }
 
 .quickReports-frame-wrap ,
-.teamFolders-frame-wrap{
+.teamFolders-frame-wrap ,
+#publicFoldersFrame ,
+#myFolderFrame {
     height: 550px;
 }
 
