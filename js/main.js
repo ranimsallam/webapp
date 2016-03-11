@@ -442,6 +442,10 @@ function updateActionsList(data){
 	}
 }
 
+function updateTabsContent(data){
+	$(".nameLabel").innerHTML = data[0].options.rowLabel;
+}
+
 function search(data){
 
 	var selReports = $("#bookmarks-quickreports");
@@ -493,6 +497,7 @@ function saveButton(data){
 			$("#folders-form").classList.toggle("hidden");
 			$("#bookmarks-myTeamFolders").classList.add("hidden");
 			$("#teamFolders-frame").classList.add("hidden");
+			toggleExpandBtn();
 			return;
 		}
 		if(isValid("my-team-folders") == true){
@@ -510,6 +515,7 @@ function saveButton(data){
 			$("#reports-form").classList.toggle("hidden");
 			$("#bookmarks-quickreports").classList.add("hidden");
 			$("#quickReports-frame").classList.add("hidden");
+			toggleExpandBtn();
 			return;
 		}
 		if(isValid("quick-reports") == true){
@@ -536,13 +542,13 @@ function reloadLastTab(){
 }
 
 function toggleExpandBtn(){
-	if( $("#quickReports-frame").src == ""){
+	if( $("#bookmarks-quickreports").options.length == 0){
 		$("#expand-quickreports").classList.add("hidden");
 	}else{
 		$("#expand-quickreports").classList.remove("hidden");
 	}
 
-	if($("#teamFolders-frame").src == ""){
+	if($("#bookmarks-myTeamFolders").options.length == 0){
 		$("#expand-myTeamFolders").classList.add("hidden");
 	}else{
 		$("#expand-myTeamFolders").classList.remove("hidden");
