@@ -366,6 +366,41 @@ function putDataToInputs(){
 }
 
 
+document.addEventListener('keyup' , function(e){
+	var active = window.location.hash;
+	var cod = e.keyCode;
+	//Left
+	if(e.keyCode == 37){
+		LeftArrowTabEvent(active);
+	}
+	//Right
+	if(e.keyCode == 39){
+		RightArrowTabEvent(active);
+	}
+});
+
+function LeftArrowTabEvent(data){
+	if(data == "#quick-reports")
+		return;
+	else if(data == "#my-folders")
+		reloadTab("#quick-reports");
+	else if(data == "#my-team-folders")
+		reloadTab("#my-folders");
+	else if(data == "#public-folders")
+		reloadTab("#my-team-folders");
+}
+
+function RightArrowTabEvent(data){
+	if(data == "#public-folders")
+		return;
+	else if(data == "#my-team-folders")
+		reloadTab("#public-folders");
+	else if(data == "#my-folders")
+		reloadTab("#my-team-folders");
+	else if(data == "#quick-reports")
+		reloadTab("#my-folders");
+}
+
 $("#reports-form").addEventListener('keyup' , function(e){
 	//Enter
 	if(e.keyCode == 13){
@@ -380,23 +415,15 @@ $("#reports-form").addEventListener('keyup' , function(e){
 	focusedId = document.activeElement.getAttribute('id');
 	//Right arrow
 	if(e.keyCode == 39){
-		RightArrowEvent("#reports-form");
-	}
-	//UP arrow
-	if(e.keyCode == 38){
-		UpArrowEvent("#reports-form");	
-	}
-	//Down arrow
-	if(e.keyCode == 40){
-		DownArrowEvent("#reports-form");
+		RightArrowFormEvent("#reports-form");
 	}
 	//Left arrow
 	if(e.keyCode == 37){
-		LeftArrowEvent("#reports-form");
+		LeftArrowFormEvent("#reports-form");
 	}
 });
 
-function RightArrowEvent(data){
+function RightArrowFormEvent(data){
 	var name;
 	var url;
 	if(data == "#folders-form"){
@@ -418,53 +445,8 @@ function RightArrowEvent(data){
 		}
 }
 
-function UpArrowEvent(data){
-	var name;
-	var url;
-	if(data == "#folders-form"){
-		name = "folderName";
-		url = "folderUrl";
-	}else{
-		name = "reportName";
-		url = "reportUrl";
-	}
 
-	for(var i=1; i<=3; i++){
-			if(focusedId == name+i && i>0){
-				$("#"+name+(i-1)).focus();
-				return;
-			}
-			if(focusedId == url+i && i>0){
-				$("#url"+(i-1)).focus();
-				return;
-			}
-		}
-}
-
-function DownArrowEvent(data){
-	var name;
-	var url;
-	if(data == "#folders-form"){
-		name = "folderName";
-		url = "folderUrl";
-	}else{
-		name = "reportName";
-		url = "reportUrl";
-	}
-
-	for(var i=1; i<=3; i++){
-			if(focusedId == name+i && i<3){
-				$("#"+name+(i+1)).focus();
-				return;
-			}
-			if(focusedId == url+i && i<3){
-				$("#"+url+(i+1)).focus();
-				return;
-			}
-		}
-}
-
-function LeftArrowEvent(data){
+function LeftArrowFormEvent(data){
 	var name;
 	var url;
 	if(data == "#folders-form"){
