@@ -578,7 +578,7 @@ function updateActionsList(data){
 function updateTabsContent(data){
 	all(".nameLabel").innerHTML = data[0].options.rowLabel;
 	$("#myFoldersExpandTarget").href = data[1].options.url;
-	$("#myFoldersFrame").src = data[1].options.url;
+	$("#myFolderFrame").src = data[1].options.url;
 	all(".folderLabel").innerHTML = data[2].options.rowLabel;
 	$("#publicFoldersExpandTarget").href = data[3].options.url;
 	$("#publicFoldersFrame").href = data[3].options.url;
