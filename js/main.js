@@ -394,6 +394,7 @@ function updatePageFromeJSON(response){
 	updateNotificationArea(response.notification);
 	updateNavBoxes(response.quickActions);
 	updateActionsList(response.quickActions);
+	updateTabsContent(response.tabsList);
 }
 
 function updateNotificationArea(data){
