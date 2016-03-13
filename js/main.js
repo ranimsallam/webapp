@@ -184,7 +184,7 @@ function clearSelectOptions(data){
 		selectReports = $("#bookmarks-quickreports");
 	}
 
-	for(var i=0; i<selectReports.childNodes.length; i++){
+	for(var i=0; i<=selectReports.childNodes.length; i++){
 			selectReports.remove(selectReports.i);
 	}
 }
@@ -356,8 +356,8 @@ function putDataToInputs(){
 		}
 
 		if(formData[i].formId == "MyTeamFoldersForm "){
-			var inputName = "#folderName"+reportsNumber;
-			var inputURL = "#foldertUrl"+reportsNumber;
+			var inputName = "#folderName"+foldersNumber;
+			var inputURL = "#foldertUrl"+foldersNumber;
 			$(inputName).value = formData[i].name;
 			$(inputURL).value = formData[i].url;
 			foldersNumber++;
