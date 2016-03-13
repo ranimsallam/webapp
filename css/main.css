@@ -573,7 +573,9 @@ nav a {
     width: 1em;
 }
 
-
+.btn-settings {
+    cursor:pointer;
+}
 
 .reports-options-buttons > div {
     display: inline-block;

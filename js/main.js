@@ -355,9 +355,9 @@ function putDataToInputs(){
 			reportsNumber++;
 		}
 
-		if(formData[i].formId == "MyTeamFoldersForm "){
+		if(formData[i].formId == "MyTeamFoldersForm"){
 			var inputName = "#folderName"+foldersNumber;
-			var inputURL = "#foldertUrl"+foldersNumber;
+			var inputURL = "#folderUrl"+foldersNumber;
 			$(inputName).value = formData[i].name;
 			$(inputURL).value = formData[i].url;
 			foldersNumber++;
