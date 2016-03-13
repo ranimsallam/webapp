@@ -605,6 +605,32 @@ function toggleExpandBtn(){
 	}
 }
 
+function frameUpload(){
+	var s1 = $("#bookmarks-quickreports");
+	var s2 = $("#bookmarks-myTeamFolders");
+	var formData = JSON.parse(localStorage.getItem("FormData"));
+	if(formData == null) return;
+	if(s1.options.length > 0){
+		for(var i=0; i<formData.length; i++){
+			if(formData[i].formId == "ReportsForm"){
+				$("#quickReports-frame").classList.remove("hidden");
+				$("#quickReports-frame").src = formData[i].url;
+				break;
+			}
+		}
+	}
+
+	if(s1.options.length > 0){
+		for(var i=0; i<formData.length; i++){
+			if(formData[i].formId == "myTeamFolders"){
+				$("teamFolders-frame").classList.remove("hidden");
+				$("teamFolders-frame").src = formData[i].url;
+				break;
+			}
+		}
+	}
+}
+
 function init(){
 
 
@@ -613,6 +639,7 @@ function init(){
 	updateSelect("#quick-reports");
 	updateSelect("#my-team-folders");
 	toggleExpandBtn();
+	frameUpload();
 	putDataToInputs();
 
 	document.getElementById("saveBtn-reports").addEventListener('click', function(e){
