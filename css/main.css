@@ -515,10 +515,14 @@ nav a {
    /* padding: 1em;*/
    /* margin-top: 4%;
     margin-left: -0.7em;*/  /*-1%*/
-    list-style-type: none;
+
+    /*list-style-type: none;
     padding: 0;
     margin-bottom: 0;
-    font-size: 0;
+    font-size: 0;*/
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .tabs > ul > li {
@@ -534,7 +538,7 @@ nav a {
        cursor: pointer;
        margin-left: -0.2%; */
 
-    display: inline-block;
+    /*display: inline-block;
     background: rgb(100,100,100);
     text-align: center;
     padding: 1em;
@@ -542,7 +546,16 @@ nav a {
     font-size: 1rem;
     vertical-align: bottom;
     width: 22.13%;
-    margin: 0 1% 0 1.5%;
+    margin: 0 1% 0 1.5%;*/
+    float: left;
+    list-style: none;
+    width: 21.2%;
+    background: rgb(100,100,100);
+    padding: 1%;
+    text-align: center;
+    margin-right: 1.333%;
+    height: 18px;
+
 }
 
 .tabs > ul > li > a {
@@ -566,7 +579,8 @@ nav a {
 /*###############################TABS##################################################*/
 
 .tab {
-    padding: 1em;
+    padding: 3%;
+    /*1em;*/
 }
 
 .btn-expand > img {
@@ -660,11 +674,12 @@ nav a {
     list-style-type: none;
     background: rgb(235, 235, 235);
     display: inline-block;
-    padding: 2% 0 4% 0;  /*10px 0 10px 0*/
+    padding: 16px 0 36px 0;  /*10px 0 10px 0*/
     margin: 1% 0 0.5em 0;  /*2px 0 7px 0*/
     font-size: 0.8em;  /*12px*/
     /*!!!!!!!!!!!!!!!*/
     position: relative;
+
 }
 
 .settings-reports > form > ul > li > label {
@@ -686,7 +701,7 @@ nav a {
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .settings-reports > form > ul > li > label + div > label {
     position: absolute;
-    margin-left: 1em;
+    margin-left: 1%; /*1em;*/
     font-size: 1em;
 }
 
@@ -703,14 +718,14 @@ nav a {
 
 /*!!!!!!!!!!!!!!!!!!!!*/
 .settings-reports > form > ul > li > div + div > input {
-    position: absolute;
-    margin-left: 3em;
+    position: absolute; 
+    margin-left: 22%; /*3em*/
 }
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 .settings-reports > form > ul > li > div > input {
     position: absolute;
-    margin-left: 4em;
+    margin-left: 22%; 
 }
 
 
