@@ -369,9 +369,12 @@ header > div.layout-wrap {
 
 nav {
     /*text-align: center;*/
-    padding: 1em;
-    width: 99%;
+    padding: 1%;
+    width: 97%;
+    text-align: center;
 }
+
+
 .nav-section{
     /*background-position: center 70px;
     background-repeat: no-repeat;*/
@@ -391,7 +394,7 @@ nav {
 }
 
 .nav-box1{
-   /* background: url("../img/icons/action-report-new.png") left 50% top 77px no-repeat black;*/
+   float: left;
 }
 
 .nav-box1:hover {
@@ -407,7 +410,7 @@ nav {
 }
 
 .nav-box3{
-     /*background: url("../img/icons/actions-help.png") left 50% top 77px no-repeat black;*/
+     float: right;
 }
 
 .nav-box3:hover {
