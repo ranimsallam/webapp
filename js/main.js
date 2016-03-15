@@ -309,7 +309,7 @@ function isValid(data){
 			(tmp[i].children[1]).classList.add("error-input");
 			if(returnVal){
 				(tmp[i].children[1]).focus();
-				(tmp[i+1].children[1]).style.outline = "none";
+				(tmp[i].children[1]).style.outline = "none";
 			}
 			returnVal=false;
 		}
@@ -327,6 +327,13 @@ function isValid(data){
 			}
 			returnVal=false;
 		}
+		if(url.slice(0,4) == "www."){
+			var newURL = "http://";
+			newURL+=url;
+			tmp[i+1].children[1].value = newURL;
+			tmp[i+1].children[1].text = newURL;
+			returnVal=true;
+		}
 		if(!urlExp.test(url) && linkExp.test(url)){
 			var newURL = "http://www.";
 			newURL+=url;
@@ -334,6 +341,7 @@ function isValid(data){
 			tmp[i+1].children[1].text = newURL;
 			returnVal=true;
 		}
+
 
 	}
 	return returnVal;
