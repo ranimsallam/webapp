@@ -29,7 +29,7 @@ if (document.addEventListener) {
 
 };
 
-
+//set selected tab active
 var set_tab = function(){
     var tabsList = document.getElementsByClassName("tab-link");
    	var active=this.hash;
@@ -93,7 +93,7 @@ for (var i = 0; i < tabs.length; i++) {
     tabs[i].addEventListener("click", set_tab);
   };
 
-
+//save links from forms to localStorage with key formData
 function saveLinks() {
 	var activeTab = location.hash;
 	var links = [];
@@ -137,7 +137,7 @@ function saveLinks() {
 	updateSelect(activeTab);
 }
 
-
+//update the saved links in select element
 function updateSelect(data) {
 		var formData = JSON.parse(localStorage.getItem("FormData"));
 		if(formData == null) return;
@@ -175,6 +175,7 @@ function updateSelect(data) {
 		changeIFrame();
 }
 
+//clear links from select element
 function clearSelectOptions(data){
 	var selectReports;
 	if(data == "#my-team-folders"){
@@ -189,6 +190,7 @@ function clearSelectOptions(data){
 	}
 }
 
+//delete links from localStorage
 function deleteLinksFromLocalStorage(data){
 
 	var formData = JSON.parse(localStorage.getItem("FormData"));
@@ -213,6 +215,7 @@ function deleteLinksFromLocalStorage(data){
 	localStorage.setItem('FormData', JSON.stringify(formData));
 }
 
+//check if input is null in forms
 function isInputsNull(data){
 	var arr = [];
 	var returnVal = true;
@@ -241,7 +244,7 @@ function isInputsNull(data){
 }
 
 
-
+//change the iframe link
 function changeIFrame() {
 	var activeTab = location.hash;
 	var newURL;
@@ -276,7 +279,7 @@ function changeIFrame() {
 	}	
 }
 
-
+//check if inputs in form are valid
 function isValid(data){
 	var returnVal = true;
 	var links = [];
@@ -347,7 +350,7 @@ function isValid(data){
 	return returnVal;
 }
 
-
+//update the inputs in form when the form is open
 function putDataToInputs(){
 
 	var formData = JSON.parse(localStorage.getItem("FormData"));
@@ -373,7 +376,7 @@ function putDataToInputs(){
 	}
 }
 
-
+// change active tab with arrows keyboard
 document.addEventListener('keyup' , function(e){
 	var active = window.location.hash;
 	var cod = e.keyCode;
@@ -387,6 +390,7 @@ document.addEventListener('keyup' , function(e){
 	}
 });
 
+//left arror action
 function LeftArrowTabEvent(data){
 	if(data == "#quick-reports")
 		return;
@@ -398,6 +402,7 @@ function LeftArrowTabEvent(data){
 		reloadTab("#my-team-folders");
 }
 
+//right arrow action
 function RightArrowTabEvent(data){
 	if(data == "#public-folders")
 		return;
@@ -409,6 +414,7 @@ function RightArrowTabEvent(data){
 		reloadTab("#my-folders");
 }
 
+// Enter/Esc events
 $("#reports-form").addEventListener('keyup' , function(e){
 	//Enter
 	if(e.keyCode == 13){
@@ -422,7 +428,7 @@ $("#reports-form").addEventListener('keyup' , function(e){
 	}
 });
 
-
+//Enter/Esc events
 $("#folders-form").addEventListener('keyup' , function(e){
 	//ESC
 	if(e.keyCode == 27){
@@ -439,7 +445,7 @@ $("#folders-form").addEventListener('keyup' , function(e){
 
 
 
-
+//update page by getting information from JSON file
 function updatePageFromeJSON(response){
 	updateNotificationArea(response.notification);
 	updateNavBoxes(response.quickActions);
@@ -447,11 +453,13 @@ function updatePageFromeJSON(response){
 	updateTabsContent(response.tabsList);
 }
 
+//update notifications area
 function updateNotificationArea(data){
 	if(data != undefined)
 		$(".notifications").innerHTML = data;
 }
 
+//update nav box from JSON
 function updateNavBoxes(data){
 	
 	if(data != undefined){
@@ -477,6 +485,7 @@ function updateNavBoxes(data){
 	
 }
 
+//update action list of nav boxes from JSON
 function updateActionsList(data){
 	if(data != undefined){
 	var actionList = [];
@@ -493,6 +502,7 @@ function updateActionsList(data){
 	}
 }
 
+//update tabs content
 function updateTabsContent(data){
 	for(var i=1; i<=3; i++){
 		$("#nameLabel"+i).innerHTML = data[0].options.rowLabel+" 0"+i;
@@ -504,6 +514,7 @@ function updateTabsContent(data){
 	$("#publicFoldersFrame").src = data[3].options.url;
 }
 
+//search in webapp
 function search(data){
 
 	var selReports = $("#bookmarks-quickreports");
@@ -534,6 +545,7 @@ function search(data){
 	return false;
 }
 
+//search event
 document.getElementById("searchInput").addEventListener('search', function(e){
 			var data = document.getElementById("searchInput").value;
 			if(!search(data)){
@@ -544,9 +556,8 @@ document.getElementById("searchInput").addEventListener('search', function(e){
 	});
 
 
-
+//save button action
 function saveButton(data){
-	
 	
 	if(data == "#my-team-folders"){
 		if( isInputsNull("#my-team-folders") ){
@@ -587,10 +598,12 @@ function saveButton(data){
 	toggleExpandBtn();
 }
 
+//save last selected tab
 function saveLastSelectedTab(data){
 	localStorage.setItem("lastTab", data);
 }
 
+//reload last selected tab
 function reloadLastTab(){
 	var tabName = localStorage.getItem("lastTab");
 	if(tabName == null)
@@ -599,6 +612,7 @@ function reloadLastTab(){
 		reloadTab(tabName);
 }
 
+//toggle expanf button according to iframe
 function toggleExpandBtn(){
 	if( $("#bookmarks-quickreports").options.length == 0){
 		$("#expand-quickreports").classList.add("hidden");
@@ -613,6 +627,7 @@ function toggleExpandBtn(){
 	}
 }
 
+//upload iframe
 function frameUpload(){
 	var s1 = $("#bookmarks-quickreports");
 	var s2 = $("#bookmarks-myTeamFolders");
@@ -639,6 +654,8 @@ function frameUpload(){
 	}
 }
 
+
+//initialize the page
 function init(){
 
 
